@@ -4,7 +4,8 @@ export async function connect(): Promise<Pool> {
     const connection = await createPool({
         host: 'localhost',
         user: 'root',
-        database: 'node_mysql_ts',
+        password: 'mamtrucha0121',
+        database: 'solicitudes',
         connectionLimit: 10
     });
     return connection;
