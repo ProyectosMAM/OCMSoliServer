@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 // DB
 import { connect } from '../database'
 // Interfaces
-import { Post } from '../interface/Post'
+import { Post } from '../interfaces/post.interface'
 
 export async function getPosts(req: Request, res: Response): Promise<Response | void> {
     try {
