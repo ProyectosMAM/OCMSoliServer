@@ -27,8 +27,11 @@ export async function createPost(req: Request, res: Response) {
 
 export async function getPost(req: Request, res: Response) {
     const id = req.params.postId;
+    console.log(req.params);
+    console.log(id);
     const conn = await connect();
     const posts = await conn.query('SELECT * FROM posts WHERE id = ?', [id]);
+    console.log(posts[0]);
     res.json(posts[0]);
 }
 

@@ -1,3 +1,5 @@
+
+USE `solicitudes` ;
 CREATE DATABASE node_mysql_ts;
 
 CREATE TABLE posts(

@@ -1,0 +1,34 @@
+{
+	"title" : "cambia a2 2",
+	"description" : "el2",
+  "image_url" : "https://www.dietisur.es/wp-content/uploads/2013/04/300005-masmi-protegeslips-anatomicos-30-494x494.jpg"
+ }
+
+// POST 
+ {
+    "nombre" : "Miguel Angel",
+    "apellido1" : "Martinez",
+    "apellido2" : "Martinez",
+    "email" : "correomam@gmail.com",
+    "user_name" : "mamjerez",
+    "password" : "mam0121",
+    "avatar_url" : "avatar.com",
+    "observaciones" : "Observaciones para este usuario.",
+    "idUser_create" : 1,
+    "idUser_update" : 1
+}
+
+{
+    "nombre" : "Juan Manuel",
+    "apellido1" : "Lopez",
+    "apellido2" : "Lopez",
+    "email" : "juanmanuel@gmail.com",
+    "user_name" : "juanma",
+    "password" : "juam01",
+    "avatar_url" : "imagen.com",
+    "observaciones" : "Observaciones para Juan Manuel.",
+    "idUser_create" : 1,
+    "idUser_update" : 1
+}
+
+// ---------------------------------------------------------

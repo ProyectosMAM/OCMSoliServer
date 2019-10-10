@@ -3,11 +3,13 @@
 Juan Manuel revisará si es necesario.
 
 
-# --------------  Adaptacion código Fazt  -------------------------------------
+# --------------  Adaptacion código Fazt Typescript & MySQL REST API (Nodejs & Express) -------------------------------------
 https://www.youtube.com/watch?v=4clEduk6OQM&t=2614s
 
 # En el minuto 29:11 utiliza >mysql en mi codigo no funciona.
 ¿Puede ser porqué el utiliza Linux?
+
+# ¿Como enviar fecha a  time_update?
 
 
 
