@@ -2,25 +2,43 @@
 # No existe "src/controllers/public"
 Juan Manuel revisará si es necesario.
 
+# ¿Como usar la API desde el codigo de Angular?
 
-# --------------  Adaptacion código Fazt Typescript & MySQL REST API (Nodejs & Express) -------------------------------------
+# ¿Se puede mojorar el codigo de user.controller.ts?
+
+# Uso pool en database.ts
+
+# user.controller.ts. Linea 9.
+¿Como usar funciones de flecha?
+Comparar en  Codigo: Fazt-nodejs-mysql-links.
+link.js linea 11.
+
+# No da error cuando borro un user que ya no existe.
+user.controlloer.ts. Linea 63.
+
+
+
+
+
+# --------------  Adaptacion código Fazt Typescript & MySQL REST API (Nodejs & Express) ---------------------------
 https://www.youtube.com/watch?v=4clEduk6OQM&t=2614s
 
 # En el minuto 29:11 utiliza >mysql en mi codigo no funciona.
 ¿Puede ser porqué el utiliza Linux?
+https://www.neoguias.com/como-conectarse-mysql-desde-linea-comandos/
+https://www.discoduroderoer.es/como-conectar-mysql-desde-la-consola-en-windows/
 
 # ¿Como enviar fecha a  time_update?
 
 
 
-# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------------------
 
 
 
 
 
-# --------------  Adaptacion código Fazt Typescript & MySQL REST API (Nodejs & Express) usa mysql2  -------------------------------------
-# No conecta al servidor de BBDD.
+# --------------  Adaptacion código Fazt Typescript & MySQL REST API (Nodejs & Express) usa mysql2  ---------------
 database.ts
 
 # No hace falta body-parse.
@@ -37,7 +55,7 @@ https://www.youtube.com/watch?v=4clEduk6OQM&t=2614s
 https://www.npmjs.com/package/mysql2
 https://www.npmjs.com/package/promise-mysql
 
-# --------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -45,7 +63,7 @@ https://www.npmjs.com/package/promise-mysql
 
 
 
-#  -------------------- RESUELTAS --------------------------------------------------------------------------------
+#  -------------------- RESUELTAS ---------------------------------------------------------------------------------
 
 # Cuando ejecutamos npm run start ¿Donde esta el script start?
 Al usar Express buscará el fichero server.js y lo ejecutará por defecto sin tener que existir el script start. 

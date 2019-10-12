@@ -50,15 +50,28 @@ export async function createUser(req: Request, res: Response) {
     }
 }
 
+export async function updateUser(req: Request, res: Response) {
+    const { UserId } = req.params;
+    const updateUser: user = req.body;
+    const conn = await connect();
+    await conn.query('UPDATE user set ? WHERE idUser = ?', [updateUser, UserId]);
+    res.json({
+        message: 'user Updated'
+    });
+}
+
 export async function deleteUser(req: Request, res: Response) {
     try {
+        // Uso de Asignación por destructuring.
+        // https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Operadores/Destructuring_assignment
+        const { UserId } = req.params;
         console.log(req.params.UserId);
         console.log(req.params);
-    const id = req.params.UserId;
+        console.log(UserId);
     const conn = await connect();
-    await conn.query('DELETE FROM user WHERE idUser = ?', [id]);
+    await conn.query('DELETE FROM user WHERE idUser = ?', [UserId]);
     res.json({
-        message: 'User deleted '+ id
+        message: 'User ' + UserId  + ' deleted '
     });
 }
     catch (e) {
@@ -66,12 +79,18 @@ export async function deleteUser(req: Request, res: Response) {
     }
 }
 
-export async function updateUser(req: Request, res: Response) {
-    const id = req.params.UserId;
-    const updateUser: user = req.body;
-    const conn = await connect();
-    await conn.query('UPDATE user set ? WHERE idUser = ?', [updateUser, id]);
-    res.json({
-        message: 'user Updated'
-    });
-}
+// export async function deleteUser(req: Request, res: Response) {
+//     try {
+//         console.log(req.params.UserId);
+//         console.log(req.params);
+//     const id = req.params.UserId;
+//     const conn = await connect();
+//     await conn.query('DELETE FROM user WHERE idUser = ?', [id]);
+//     res.json({
+//         message: 'User deleted '+ id
+//     });
+// }
+//     catch (e) {
+//         console.log(e)
+//     }
+// }

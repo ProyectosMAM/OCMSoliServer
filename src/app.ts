@@ -2,9 +2,9 @@ import express, { Application } from 'express'
 import morgan from 'morgan'
 
 // Routes
-import IndexRoutes from './routes/index.routes'
-import PostRoutes from './routes/post.routes'
-import UserRoutes from './routes/user.routes'
+import IndexRoutes from './routes/index.route'
+import PostRoutes from './routes/post.route'
+import UserRoutes from './routes/user.route'
 
 export class App {
     app: Application;
