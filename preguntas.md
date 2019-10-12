@@ -14,7 +14,7 @@ Comparar en  Codigo: Fazt-nodejs-mysql-links.
 link.js linea 11.
 
 # No da error cuando borro un user que ya no existe.
-user.controlloer.ts. Linea 63.
+user.controller.ts. Linea 63.
 
 
 
