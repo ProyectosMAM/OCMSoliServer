@@ -21,10 +21,11 @@ export async function getUsers(req: Request, res: Response): Promise<Response | 
 
 export async function getUser(req: Request, res: Response) {
     try {
-        const id = req.params.UserId;
+        const idUser = req.params.idUser;
+        console.log('Function getUser');
         console.log(req.params);
         const conn = await connect();
-        const user = await conn.query('SELECT * FROM user WHERE idUser = ?', [id]);
+        const user = await conn.query('SELECT * FROM user WHERE idUser = ?', [idUser]);
         // console.log(user);
         res.json(user[0]);
     }
@@ -37,10 +38,14 @@ export async function createUser(req: Request, res: Response) {
     try {
         const newUser: user = req.body;
         newUser.password = await helpers.encryptPassword( newUser.password);
-        console.log(newUser);
-        console.log('Logitud password: ' + newUser.password.length);
+        // console.log(newUser);
+        // console.log('Logitud password: ' + newUser.password.length);
          const conn = await connect();
+        //  const sql = "INSERT INTO user SET " + "('" + JSON.stringify(newUser) + "')";
+        //  console.log(sql);
+        //  await conn.query(sql);
          await conn.query('INSERT INTO user SET ?', [newUser]);
+
          res.json({
              message: 'New User Created'
          });
@@ -53,71 +58,146 @@ export async function createUser(req: Request, res: Response) {
      }
 }
 
-/**
- * Metodo para buscar un usuario existente mediante el user_name y password
- * encriptar passs
- * se debe encriptar el pasword que viene como parametro y enviar a la consulta.
- * select * from usuaers where username = 'username adr password = :password encriptado
- */
-export async function signIn(username: string, password: string) {
-   
-        // const newUser: user = req.body;
-        // newUser.password = await helpers.encryptPassword( newUser.password);
-        // console.log(newUser);
-        const conn = await connect();
-        //cambiar por SELECT ***** WHERE USERNAME AND PASSWORD
-        const rows = await conn.query('SELECT * FROM users WHERE username = ?', [username]);
-        if (rows.length > 0) {
-          const user = rows[0];
-          const validPassword = await helpers.matchPassword(password, password)  // tendria que ser use.password
-          if (validPassword) {
-              console.log('Usuario logeado correctamente');
-            // done(null, user, req.flash('success', 'Welcome ' + user.username));
-          } else {
-            console.log('Password incorrecto');
-            // done(null, false, req.flash('message', 'Incorrect Password'));
-          }
-        } else {
-            console.log('Nombre de usuario incorrecto');
-        //   return done(null, false, req.flash('message', 'The Username does not exists.'));
-                
-      }
-    }
-
 export async function updateUser(req: Request, res: Response) {
-    const { UserId } = req.params;
+    const { idUser } = req.params;
     const updateUser: user = req.body;
     const conn = await connect();
-    await conn.query('UPDATE user set ? WHERE idUser = ?', [updateUser, UserId]);
+    await conn.query('UPDATE user set ? WHERE idUser = ?', [updateUser, idUser]);
     res.json({
-        message: 'user Updated'
+        message: 'User ' + idUser  + ' updated'
     });
 }
 
 /**
- *
+ * Metodo delete un usuario por su idUser.
  *
  * @export
  * @param {Request} req
  * @param {Response} res
  */
+// export async function deleteUser(req: Request, res: Response) {
+//     try {
+//         // Uso de Asignación por destructuring.
+//         // https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Operadores/Destructuring_assignment
+//         const { idUser } = req.params;
+//         // console.log(req.params.idUser);
+//         // console.log(req.params);
+//         // console.log(idUser);
+//     const conn = await connect();
+//     const rowsDeleted = await conn.query('DELETE FROM user WHERE idUser = ?', [idUser]);
+//     console.log(' Rows deleted: ' + rowsDeleted.length );
+//     if (rowsDeleted.length > 0) {
+//     res.json({
+//         message: 'User ' + idUser  + ' deleted '
+//     });
+// } else {
+//     res.json({
+//         message: '¡No hay registro para borrar! '
+//     });
+
+// }
+// }
+//     catch (e) {
+//         console.log(e)
+//     }
+// }
+
+
 export async function deleteUser(req: Request, res: Response) {
     try {
         // Uso de Asignación por destructuring.
         // https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Operadores/Destructuring_assignment
-        const { UserId } = req.params;
-        console.log(req.params.UserId);
-        console.log(req.params);
-        console.log(UserId);
+        const { idUser } = req.params;
+        // console.log(req.params.idUser);
+        // console.log(req.params);
+        // console.log(idUser);
     const conn = await connect();
-    await conn.query('DELETE FROM user WHERE idUser = ?', [UserId]);
-    res.json({
-        message: 'User ' + UserId  + ' deleted '
-    });
+    const sql = 'DELETE FROM user WHERE idUser = ' + [idUser];
+   await conn.query(sql, function (err: any, result:any) {
+    if (err) throw err;
+    console.log(result.affectedRows + " record(s) affected");
+
+       if (result.affectedRows > 0) {
+           console.log(" record(s) deleted");
+           // res.json es lo que mostrara como respuesta Postman o Insomnia.
+           // La respuesta se puede enviar como json.
+           // Pero solo de una forma u otra.
+           res.send('User ' + idUser + ' deleted ');
+        //    res.json({
+        //        message: 'User ' + idUser + ' deleted '
+        //    });
+                  } else {
+        //    res.json({
+        //        message: '¡No hay registro para borrar! '
+        //    });
+           res.send('¡No hay registro para borrar!');
+           console.log("No hay registro que borrar");
+       }
+   res.end();
+  });
 }
     catch (e) {
         console.log(e)
     }
 }
 
+/**
+ * Metodo para buscar un usuario existente mediante el user_name y password.
+*/
+    export async function signIn(req: Request, res: Response) {
+        // console.log('Entra en funcion SignIn');
+        const conn = await connect();
+        const rows = await conn.query("SELECT * FROM user WHERE user_name =? ", [req.body.user_name]);
+        const row: any = rows[0];
+        if (row != '') {
+            const user: any = rows[0];
+            const validatePass =await  helpers.matchPassword(req.body.password,user[0].password);
+            console.log(validatePass);
+            if (validatePass) {
+                return res.json(user);
+            } else {
+                return res.json('password incorrecto');
+            }
+        } else {
+            console.log('Nombre de usuario incorrecto');
+            return res.json('usuario incorrecto');
+      }
+    }
 
+// #region  <form action="auth" method="POST">
+    // https://codeshack.io/basic-login-system-nodejs-express-mysql/
+
+//     <div class="login-form">
+//     <h1>Login Form</h1>
+//     <form action="auth" method="POST">
+//         <input type="text" name="username" placeholder="Username" required>
+//         <input type="password" name="password" placeholder="Password" required>
+//         <input type="submit">
+//     </form>
+// </div>
+
+
+ // El codigo javascript se ejecuta al pulsar el botón submit 
+ //  <form action="auth" method="POST"> = app.post('/auth', function(request, response) {......
+ 
+
+    // app.post('/auth', function(request, response) {
+    //     var username = request.body.username;
+    //     var password = request.body.password;
+    //     if (username && password) {
+    //         connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+    //             if (results.length > 0) {
+    //                 request.session.loggedin = true;
+    //                 request.session.username = username;
+    //                 response.redirect('/home');
+    //             } else {
+    //                 response.send('Incorrect Username and/or Password!');
+    //             }			
+    //             response.end();
+    //         });
+    //     } else {
+    //         response.send('Please enter Username and Password!');
+    //         response.end();
+    //     }
+    // });
+    //#endregion

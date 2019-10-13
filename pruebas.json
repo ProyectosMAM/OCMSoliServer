@@ -31,4 +31,22 @@
     "idUser_update" : 1
 }
 
+    {
+      "idUser": 1,
+      "nombre": "Miguel Angel",
+      "apellido1": "Martinez",
+      "apellido2": "Martinez",
+      "email": "23@gmail.com",
+      "user_name": "23",
+      "password": "23",
+      "avatar_url": "avatar.com",
+      "observaciones": "Observaciones",
+           "idUser_create": 1,
+      "idUser_update": 1
+    }
+
+
+
+    "time_create": "2019-10-09T18:50:56.000Z",
+    "time_update": "2019-10-09T18:50:56.000Z",
 // ---------------------------------------------------------

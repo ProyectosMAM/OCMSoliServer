@@ -1,10 +1,11 @@
 import express, { Application } from 'express'
 import morgan from 'morgan'
+import passport from 'passport'
 
 // Routes
 import IndexRoutes from './routes/index.route'
 import PostRoutes from './routes/post.route'
-import UserRoutes from './routes/user.route'
+import UserRoutes from './routes/user.routes'
 
 export class App {
     app: Application;
@@ -31,6 +32,8 @@ export class App {
     private middlewares() {
         this.app.use(morgan('dev'));
         this.app.use(express.json());
+        this.app.use(passport.initialize());
+        this.app.use(passport.session());
     }
 
     private routes() {

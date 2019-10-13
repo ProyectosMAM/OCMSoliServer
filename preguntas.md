@@ -1,10 +1,10 @@
-# server.js linea 18 =  app.use(express.static("src/controllers/public"));
-# No existe "src/controllers/public"
-Juan Manuel revisará si es necesario.
 
-# ¿Como usar la API desde el codigo de Angular?
+# NO funciona route signIn en user.routers,ts linea 16.
+No se como pasar dos parametros, y aunque pase un nombre de usuario se dirije a getUser()
 
-# ¿Se puede mojorar el codigo de user.controller.ts?
+# Usar json en Linea 37 user.controller.ts  export async function createUser(req: Request, res: Response) {....
+
+# ¿Se puede mejorar el codigo de user.controller.ts?
 
 # Uso pool en database.ts
 
@@ -13,8 +13,7 @@ Juan Manuel revisará si es necesario.
 Comparar en  Codigo: Fazt-nodejs-mysql-links.
 link.js linea 11.
 
-# No da error cuando borro un user que ya no existe.
-user.controller.ts. Linea 63.
+
 
 
 
@@ -74,3 +73,11 @@ En ejemplo de Fazt también instala Typescript y no se refleja en el package.jso
 
 # ¿Porque esta index.js en la carpeta models?
 Lo usa Sequalize para iniciarse
+
+# No da error cuando borro un user que ya no existe.
+user.controller.ts. Linea 63.
+Respuesta: MySQL no devuelve nada cuando se hace un delete aunque no exista el registro que se pide borrar.
+
+# server.js linea 18 =  app.use(express.static("src/controllers/public"));
+# No existe "src/controllers/public"
+Juan Manuel revisará si es necesario.

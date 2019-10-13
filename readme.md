@@ -58,7 +58,7 @@ Crea tabla y FOREIGN KEY
 # Minuto 47:05
 createPool en lugar de createConnection
 
-# Minuto 1:10:20
+# Minuto 1:10:26 https://youtu.be/qJ5R9WTW0_E?t=4226
 Recibe los datos del formulario.
 
 # Minuto 1:12:40
@@ -86,8 +86,8 @@ https://github.com/jaredhanson/connect-flash
 Muy antigüo,hace 7 años que no se actualiza.
 
 
-# Minuto 2:11:30 
-Autentificar usuario.
+# Minuto 2:11:30 https://youtu.be/qJ5R9WTW0_E?t=7890
+SignUp user
 
 # Minuto 2:19:30 https://youtu.be/qJ5R9WTW0_E?t=8370
 Uso de passport.
