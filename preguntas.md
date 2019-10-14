@@ -1,10 +1,21 @@
 
-# NO funciona route signIn en user.routers,ts linea 16.
-No se como pasar dos parametros, y aunque pase un nombre de usuario se dirije a getUser()
-
 # Usar json en Linea 37 user.controller.ts  export async function createUser(req: Request, res: Response) {....
+Pretendo pasar todas las consultas como una cadena al query.
+
+# user.controllers.ts function signIn Linea 152.
+¿Se puede hacer 
+const user: any = rows[0] 
+?
+
+Crear Interface de tipo user para evitar
+user: any
+
+
+
+
 
 # ¿Se puede mejorar el codigo de user.controller.ts?
+¿Función para que todas las validaciones sean comunes?
 
 # Uso pool en database.ts
 

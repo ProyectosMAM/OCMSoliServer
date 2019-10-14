@@ -144,25 +144,23 @@ export async function deleteUser(req: Request, res: Response) {
 /**
  * Metodo para buscar un usuario existente mediante el user_name y password.
 */
-    export async function signIn(req: Request, res: Response) {
-        // console.log('Entra en funcion SignIn');
-        const conn = await connect();
-        const rows = await conn.query("SELECT * FROM user WHERE user_name =? ", [req.body.user_name]);
-        const row: any = rows[0];
-        if (row != '') {
-            const user: any = rows[0];
-            const validatePass =await  helpers.matchPassword(req.body.password,user[0].password);
-            console.log(validatePass);
-            if (validatePass) {
-                return res.json(user);
-            } else {
-                return res.json('password incorrecto');
-            }
+export async function signIn(req: Request, res: Response) {
+    const conn = await connect();
+    const rows = await conn.query("SELECT * FROM user WHERE user_name =? ", [req.body.user_name]);
+    // rows[] trae mucha información, selecciono unicamente rows[0] que son los datos de user.
+    const row: any = rows[0];
+    if (row != '') {
+        const user: any = rows[0];
+        const validatePass = await helpers.matchPassword(req.body.password, user[0].password);
+        if (validatePass) {
+            return res.json(user);
         } else {
-            console.log('Nombre de usuario incorrecto');
-            return res.json('usuario incorrecto');
-      }
+            return res.json('password incorrecto');
+        }
+    } else {
+        return res.json('usuario incorrecto');
     }
+}
 
 // #region  <form action="auth" method="POST">
     // https://codeshack.io/basic-login-system-nodejs-express-mysql/
