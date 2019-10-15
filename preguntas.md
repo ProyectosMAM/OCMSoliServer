@@ -7,13 +7,6 @@ Pretendo pasar todas las consultas como una cadena al query.
 const user: any = rows[0] 
 ?
 
-Crear Interface de tipo user para evitar
-user: any
-
-
-
-
-
 # ¿Se puede mejorar el codigo de user.controller.ts?
 ¿Función para que todas las validaciones sean comunes?
 
@@ -24,6 +17,10 @@ user: any
 Comparar en  Codigo: Fazt-nodejs-mysql-links.
 link.js linea 11.
 
+
+# ---------------------------- Utilidades a probar ------------------------
+Para crear los models desde la BBDD.
+https://github.com/sequelize/sequelize-auto
 
 
 

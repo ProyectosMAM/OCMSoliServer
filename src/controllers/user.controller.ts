@@ -1,4 +1,6 @@
 import { Request, Response } from 'express'
+
+
 const helpers = require('../libs/helpers');
 
 // DB
@@ -31,31 +33,26 @@ export async function getUser(req: Request, res: Response) {
     }
     catch (e) {
         console.log(e)
+    
     }
 }
 
 export async function createUser(req: Request, res: Response) {
-    try {
+    // console.log(new Date());
+    // console.log(req.body);
+      try {
         const newUser: user = req.body;
-        newUser.password = await helpers.encryptPassword( newUser.password);
-        // console.log(newUser);
-        // console.log('Logitud password: ' + newUser.password.length);
-         const conn = await connect();
-        //  const sql = "INSERT INTO user SET " + "('" + JSON.stringify(newUser) + "')";
-        //  console.log(sql);
-        //  await conn.query(sql);
-         await conn.query('INSERT INTO user SET ?', [newUser]);
-
-         res.json({
-             message: 'New User Created'
-         });
-     }
-     catch (e) {
-         console.log(e)
-         res.json({
-             message: 'Error User Created'
-         });
-     }
+        newUser.password = await helpers.encryptPassword(newUser.password);
+        const conn = await connect();
+        await conn.query('INSERT INTO user SET ?', [newUser]);
+        res.json('user creado');
+        console.log('user creado');
+    }
+    catch (e) {
+        console.log(e.errno);
+        console.log(e);
+        res.json(e.errno);
+    }
 }
 
 export async function updateUser(req: Request, res: Response) {
@@ -145,7 +142,7 @@ export async function deleteUser(req: Request, res: Response) {
  * Metodo para buscar un usuario existente mediante el user_name y password.
 */
 export async function signIn(req: Request, res: Response) {
-    const conn = await connect();
+     const conn = await connect();
     const rows = await conn.query("SELECT * FROM user WHERE user_name =? ", [req.body.user_name]);
     // rows[] trae mucha información, selecciono unicamente rows[0] que son los datos de user.
     const row: any = rows[0];
