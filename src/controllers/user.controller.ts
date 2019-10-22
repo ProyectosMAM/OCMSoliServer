@@ -40,7 +40,7 @@ export async function getUser(req: Request, res: Response) {
 export async function createUser(req: Request, res: Response) {
     // console.log(new Date());
     // console.log(req.body);
-      try {
+    try {
         const newUser: user = req.body;
         newUser.password = await helpers.encryptPassword(newUser.password);
         const conn = await connect();
@@ -49,9 +49,18 @@ export async function createUser(req: Request, res: Response) {
         console.log('user creado');
     }
     catch (e) {
-        console.log(e.errno);
-        console.log(e);
-        res.json(e.errno);
+        // console.log(e.errn);
+        // console.log(e);
+        // res.json(e.errno);
+        // res.json(e.message);
+
+        if (e.message.includes('email')) {
+            res.json('El email ya existe');
+        }
+
+        if (e.message.includes('userName')) {
+            res.json('El nombre de usuario ya existe');
+        }
     }
 }
 
@@ -67,8 +76,9 @@ export async function updateUser(req: Request, res: Response) {
 
 /**
  * Metodo delete un usuario por su idUser.
- *
- * @export
+ *s
+ * @exports
+ * 
  * @param {Request} req
  * @param {Response} res
  */
