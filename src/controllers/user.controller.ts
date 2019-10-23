@@ -1,6 +1,5 @@
-import { Request, Response } from 'express'
-
-
+import { Request, Response, response } from 'express'
+import jwt from 'jsonwebtoken';
 const helpers = require('../libs/helpers');
 
 // DB
@@ -33,19 +32,26 @@ export async function getUser(req: Request, res: Response) {
     }
     catch (e) {
         console.log(e)
-    
-    }
+     }
 }
 
 export async function createUser(req: Request, res: Response) {
     // console.log(new Date());
     // console.log(req.body);
     try {
+        // Guardar el user.
         const newUser: user = req.body;
         newUser.password = await helpers.encryptPassword(newUser.password);
         const conn = await connect();
         await conn.query('INSERT INTO user SET ?', [newUser]);
-        res.json('user creado');
+
+        // token
+        const token: string = jwt.sign({ _id: newUser.idUser }, process.env.TOKEN_SECRET || 'siNoHayEnv', {
+         expiresIn: 60 * 60 * 24
+        });
+        res.header('auth-token', token).json(newUser);
+
+        // res.json('user creado');
         console.log('user creado');
     }
     catch (e) {
@@ -62,6 +68,8 @@ export async function createUser(req: Request, res: Response) {
             res.json('El nombre de usuario ya existe');
         }
     }
+
+
 }
 
 export async function updateUser(req: Request, res: Response) {
@@ -108,7 +116,6 @@ export async function updateUser(req: Request, res: Response) {
 //         console.log(e)
 //     }
 // }
-
 
 export async function deleteUser(req: Request, res: Response) {
     try {
@@ -168,6 +175,14 @@ export async function signIn(req: Request, res: Response) {
         return res.json('usuario incorrecto');
     }
 }
+
+
+export const profile =(req: Request, res: Response) => {
+    console.log(req.header('auth-token'));
+res.send('profile');
+}
+
+
 
 // #region  <form action="auth" method="POST">
     // https://codeshack.io/basic-login-system-nodejs-express-mysql/

@@ -1,3 +1,9 @@
+# Implatación de JsonWebToken
+user.controller.ts Linea 50.
+
+
+
+
 
 # Usar json en Linea 37 user.controller.ts  export async function createUser(req: Request, res: Response) {....
 Pretendo pasar todas las consultas como una cadena al query.

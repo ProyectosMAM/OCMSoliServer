@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const passport = require('passport');
-const { isLoggedIn } = require('../lib/auth');
+const { TokenValidation } = require('../libs/verifyToken');
+// const { isLoggedIn } = require('../libs/auth');
 
 // SIGNUP
 router.get('/signup', (req, res) => {
@@ -42,9 +43,11 @@ router.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-router.get('/profile', isLoggedIn, (req, res) => {
-  console.log("Profile");
-  // res.render('profile');
-});
+router.get('/profile', TokenValidation, profile);
+
+// router.get('/profile', isLoggedIn, (req, res) => {
+//   console.log("Profile");
+//   // res.render('profile');
+// });
 
 module.exports = router;
