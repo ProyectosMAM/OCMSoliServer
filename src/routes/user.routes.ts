@@ -1,7 +1,6 @@
 import { Router } from 'express'
 const { TokenValidation } = require('../libs/verifyToken');
 
-
 import {
     getUsers,
     createUser,
@@ -27,8 +26,7 @@ router.route('/:idUser')
     .delete(deleteUser)
     .put(updateUser);
 
-    router.route('/signIn')
+router.route('/signIn')
     .post(signIn);
 
-    
-    export default router;
+export default router;

@@ -41,6 +41,7 @@ export async function createUser(req: Request, res: Response) {
     try {
         // Guardar el user.
         const newUser: user = req.body;
+        console.log(newUser);
         newUser.password = await helpers.encryptPassword(newUser.password);
         const conn = await connect();
         await conn.query('INSERT INTO user SET ?', [newUser]);
@@ -49,9 +50,9 @@ export async function createUser(req: Request, res: Response) {
         const token: string = jwt.sign({ _id: newUser.idUser }, process.env.TOKEN_SECRET || 'siNoHayEnv', {
          expiresIn: 60 * 60 * 24
         });
-        res.header('auth-token', token).json(newUser);
+        // res.header('auth-token', token).json(newUser);
 
-        // res.json('user creado');
+        res.json('user creado');
         console.log('user creado');
     }
     catch (e) {
@@ -68,8 +69,6 @@ export async function createUser(req: Request, res: Response) {
             res.json('El nombre de usuario ya existe');
         }
     }
-
-
 }
 
 export async function updateUser(req: Request, res: Response) {
