@@ -3,8 +3,6 @@ import morgan from 'morgan'
 import passport from 'passport'
 
 // Routes
-import IndexRoutes from './routes/index.route'
-import PostRoutes from './routes/post.route'
 import UserRoutes from './routes/user.routes'
 
 export class App {
@@ -37,8 +35,6 @@ export class App {
     }
 
     private routes() {
-        this.app.use(IndexRoutes);
-        this.app.use('/posts', PostRoutes);
         this.app.use('/api/v1/users', UserRoutes);
     }
 

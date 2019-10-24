@@ -21,18 +21,19 @@ export async function getUsers(req: Request, res: Response): Promise<Response | 
 }
 
 export async function getUser(req: Request, res: Response) {
+    console.log('Function getUser');
     try {
         const idUser = req.params.idUser;
         console.log('Function getUser');
         console.log(req.params);
         const conn = await connect();
         const user = await conn.query('SELECT * FROM user WHERE idUser = ?', [idUser]);
-        // console.log(user);
+        console.log(user[0]);
         res.json(user[0]);
     }
     catch (e) {
-        console.log(e)
-     }
+        console.log(e);
+           }
 }
 
 export async function createUser(req: Request, res: Response) {
@@ -154,7 +155,7 @@ export async function deleteUser(req: Request, res: Response) {
     }
 }
 
-/**
+/*
  * Metodo para buscar un usuario existente mediante el user_name y password.
 */
 export async function signIn(req: Request, res: Response) {
