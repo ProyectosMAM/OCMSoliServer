@@ -5,15 +5,18 @@ const helpers = require('../libs/helpers');
 // DB
 import { connect } from '../database'
 
+// Clases importadas de models.
+import { User } from '../models/user.model';
+
 // Interfaces
-import { user } from '../interfaces/user.interface'
+
 
 export async function getUsers(req: Request, res: Response): Promise<Response | void> {
     try {
         const conn = await connect();
-        const user = await conn.query('SELECT * FROM user');
-        console.log(user[0]);
-        return res.json(user[0]);
+        const usersSelected = await conn.query('SELECT * FROM user');
+        console.log(usersSelected[0]);
+        return res.json(usersSelected[0]);
     }
     catch (e) {
         console.log(e)
@@ -21,15 +24,15 @@ export async function getUsers(req: Request, res: Response): Promise<Response | 
 }
 
 export async function getUser(req: Request, res: Response) {
-    console.log('Function getUser');
+    // console.log('Function getUser');
     try {
         const idUser = req.params.idUser;
-        console.log('Function getUser');
-        console.log(req.params);
+        // console.log('Function getUser');
+        // console.log(req.params);
         const conn = await connect();
-        const user = await conn.query('SELECT * FROM user WHERE idUser = ?', [idUser]);
-        console.log(user[0]);
-        res.json(user[0]);
+        const userSelected = await conn.query('SELECT * FROM user WHERE idUser = ?', [idUser]);
+        console.log(userSelected[0]);
+        res.json(userSelected[0]);
     }
     catch (e) {
         console.log(e);
@@ -37,11 +40,9 @@ export async function getUser(req: Request, res: Response) {
 }
 
 export async function createUser(req: Request, res: Response) {
-    // console.log(new Date());
-    // console.log(req.body);
     try {
         // Guardar el user.
-        const newUser: user = req.body;
+        const newUser: User = req.body;
         console.log(newUser);
         newUser.password = await helpers.encryptPassword(newUser.password);
         const conn = await connect();
@@ -57,15 +58,9 @@ export async function createUser(req: Request, res: Response) {
         console.log('user creado');
     }
     catch (e) {
-        // console.log(e.errn);
-        // console.log(e);
-        // res.json(e.errno);
-        // res.json(e.message);
-
         if (e.message.includes('email')) {
             res.json('El email ya existe');
         }
-
         if (e.message.includes('userName')) {
             res.json('El nombre de usuario ya existe');
         }
@@ -74,9 +69,9 @@ export async function createUser(req: Request, res: Response) {
 
 export async function updateUser(req: Request, res: Response) {
     const { idUser } = req.params;
-    const updateUser: user = req.body;
+    const updatedUser: User = req.body;
     const conn = await connect();
-    await conn.query('UPDATE user set ? WHERE idUser = ?', [updateUser, idUser]);
+    await conn.query('UPDATE user set ? WHERE idUser = ?', [updatedUser, idUser]);
     res.json({
         message: 'User ' + idUser  + ' updated'
     });
@@ -159,7 +154,7 @@ export async function deleteUser(req: Request, res: Response) {
  * Metodo para buscar un usuario existente mediante el user_name y password.
 */
 export async function signIn(req: Request, res: Response) {
-     const conn = await connect();
+    const conn = await connect();
     const rows = await conn.query("SELECT * FROM user WHERE user_name =? ", [req.body.user_name]);
     // rows[] trae mucha información, selecciono unicamente rows[0] que son los datos de user.
     const row: any = rows[0];
@@ -176,12 +171,10 @@ export async function signIn(req: Request, res: Response) {
     }
 }
 
-
 export const profile =(req: Request, res: Response) => {
     console.log(req.header('auth-token'));
 res.send('profile');
 }
-
 
 
 // #region  <form action="auth" method="POST">
