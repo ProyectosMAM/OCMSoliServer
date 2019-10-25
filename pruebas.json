@@ -3,8 +3,7 @@
 	"description" : "el2",
   "image_url" : "https://www.dietisur.es/wp-content/uploads/2013/04/300005-masmi-protegeslips-anatomicos-30-494x494.jpg"
  }
-
-// POST 
+ 
  {
     "nombre" : "Miguel Angel",
     "apellido1" : "Martinez",
@@ -41,7 +40,7 @@
       "password": "23",
       "avatar_url": "avatar.com",
       "observaciones": "Observaciones",
-           "idUser_create": 1,
+      "idUser_create": 1,
       "idUser_update": 1
     }
 

@@ -1,4 +1,4 @@
-import { Request, Response, response } from 'express'
+import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken';
 const helpers = require('../libs/helpers');
 
@@ -47,13 +47,6 @@ export async function createUser(req: Request, res: Response) {
         newUser.password = await helpers.encryptPassword(newUser.password);
         const conn = await connect();
         await conn.query('INSERT INTO user SET ?', [newUser]);
-
-        // token
-        const token: string = jwt.sign({ _id: newUser.idUser }, process.env.TOKEN_SECRET || 'siNoHayEnv', {
-         expiresIn: 60 * 60 * 24
-        });
-        // res.header('auth-token', token).json(newUser);
-
         res.json('user creado');
         console.log('user creado');
     }
@@ -162,7 +155,21 @@ export async function signIn(req: Request, res: Response) {
         const user: any = rows[0];
         const validatePass = await helpers.matchPassword(req.body.password, user[0].password);
         if (validatePass) {
-            return res.json(user);
+
+  // token
+        // https://www.oscarblancarteblog.com/2018/01/16/implementar-json-web-tokens-nodejs/
+        var tokenData = {
+            username: req.body.user_name
+                  }
+        const token: string = jwt.sign(tokenData, process.env.TOKEN_SECRET || 'siNoHayEnv', {
+         expiresIn: 60 * 60 * 24
+        });
+        // res.header('auth-token', token).json(newUser);
+        res.send({token})
+        // -----------------------------------------------------------------------------------
+
+        // Si lo descomento da error.   
+        // return res.json(user);
         } else {
             return res.json('password incorrecto');
         }

@@ -17,9 +17,9 @@ router.route('/')
     .get(getUsers)
     .post(createUser);
 
-// las rutas que no tiene parametros :idUser deben ir antes.
+// Las rutas que no tiene parametros :idUser deben ir antes.
+// En Insomnia =>  auth-token   el token sin comillas.
 router.get('/profile', TokenValidation, profile);
-
 
 router.route('/:idUser')
     .get(getUser)
