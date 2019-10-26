@@ -8,16 +8,16 @@ interface IPayload{
 }
 
 export const TokenValidation = (req: Request , res: Response, next: NextFunction ) => {
-  const token = req.header('auth-token');
+  let token = req.headers['authorization'];
   console.log(token);
+  if (token.startsWith('Bearer ')) {
+    // Remove Bearer from string
+    token = token.slice(7, token.length);
+  }
   if(!token) return res.status(401).json('Access denied, No existe el token');
   const payload = jwt.verify(token, process.env.TOKEN_SECRET || 'siNoHayEnv') as IPayload;
   console.log(payload);
 //   req.userId = payload._id;
-
-
-
-
   // continua con la siguiente ruta.  
   next();
 

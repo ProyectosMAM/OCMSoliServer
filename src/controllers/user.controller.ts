@@ -139,6 +139,5 @@ export async function signIn(req: Request, res: Response) {
 }
 
 export const profile =(req: Request, res: Response) => {
-    console.log(req.header('auth-token'));
-res.send({profile: 'profile'});
+    res.send({profile: 'profile'});
 }
