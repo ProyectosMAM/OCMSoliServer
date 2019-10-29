@@ -15,7 +15,7 @@ export async function getUsers(req: Request, res: Response): Promise<Response | 
     try {
         const conn = await connect();
         const usersSelected = await conn.query('SELECT * FROM user');
-        console.log(usersSelected[0]);
+        // console.log(usersSelected[0]);
         return res.json(usersSelected[0]);
     }
     catch (e) {
@@ -109,7 +109,7 @@ export async function deleteUser(req: Request, res: Response) {
 
 export async function signIn(req: Request, res: Response) {
     const conn = await connect();
-    const rows = await conn.query("SELECT * FROM user WHERE user_name =? ", [req.body.user_name]);
+    const rows = await conn.query("SELECT * FROM user WHERE userName =? ", [req.body.userName]);
     // rows[] trae mucha información, selecciono unicamente rows[0] que son los datos de user.
     const row: any = rows[0];
     if (row != '') {
@@ -120,11 +120,12 @@ export async function signIn(req: Request, res: Response) {
         // token
         // https://www.oscarblancarteblog.com/2018/01/16/implementar-json-web-tokens-nodejs/
         var tokenData = {
-            username: req.body.user_name
+            username: req.body.userName
                   }
         const token: string = jwt.sign(tokenData, process.env.TOKEN_SECRET || 'siNoExisteEnv', {
          expiresIn: 60 * 60 * 24
         });
+        console.log({token});
          res.send({token})
         // -----------------------------------------------------------------------------------
 

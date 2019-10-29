@@ -41,7 +41,7 @@ https://www.youtube.com/watch?v=4clEduk6OQM&t=2614s
 https://www.neoguias.com/como-conectarse-mysql-desde-linea-comandos/
 https://www.discoduroderoer.es/como-conectar-mysql-desde-la-consola-en-windows/
 
-# ¿Como enviar fecha a  time_update?
+# ¿Como enviar fecha a  updatedAt?
 
 
 

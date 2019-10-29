@@ -112,6 +112,16 @@ Minuto 2:50:56 SignIn User.  https://youtu.be/qJ5R9WTW0_E?t=10256
 Minuto 3:12:14 Protecting routes. https://youtu.be/qJ5R9WTW0_E?t=11534
 # ---------------------------------------------------------------------------------------------------------------
 
+# Angular Mysql CRUD Tutorial, REST API Node & Typescript. 26 diciembre 2018.
+https://www.youtube.com/watch?v=lxYB79ANJM8&t=6983s
+
+# 01. Diseño de APIs: Estructura de nuestro proyecto (Capas y configuración). 1 abril 2019.
+Codigo: 
+https://www.youtube.com/watch?v=gc-v3_LDjPk&list=PLzHaXzj_WAyn-kfjTcXJP3PMjS2I-QA0c
+
+
+
+
 
 
  ![Tux, the Linux mascot](https://picsum.photos/200/300)

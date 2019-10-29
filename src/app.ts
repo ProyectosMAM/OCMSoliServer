@@ -32,7 +32,7 @@ export class App {
     }
 
     private middlewares() {
-        this.app.use(morgan('dev'));
+        this.app.use(morgan('common'));
         this.app.use(express.json());
         this.app.use(passport.initialize());
         this.app.use(passport.session());
