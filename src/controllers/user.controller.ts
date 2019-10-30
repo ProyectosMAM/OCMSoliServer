@@ -116,21 +116,14 @@ export async function signIn(req: Request, res: Response) {
         const user: any = rows[0];
         const validatePass = await helpers.matchPassword(req.body.password, user[0].password);
         if (validatePass) {
-
-        // token
-        // https://www.oscarblancarteblog.com/2018/01/16/implementar-json-web-tokens-nodejs/
         var tokenData = {
             username: req.body.userName
                   }
         const token: string = jwt.sign(tokenData, process.env.TOKEN_SECRET || 'siNoExisteEnv', {
          expiresIn: 60 * 60 * 24
         });
-        console.log({token});
+        // console.log(token);
          res.send({token})
-        // -----------------------------------------------------------------------------------
-
-        // Si lo descomento da error.   
-        // return res.json(user);
         } else {
             return res.json('password incorrecto');
         }
