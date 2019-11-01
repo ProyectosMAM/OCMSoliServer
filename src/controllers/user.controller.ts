@@ -44,17 +44,19 @@ export async function createUser(req: Request, res: Response) {
         const newUser: User = req.body;
         console.log(newUser);
         newUser.password = await helpers.encryptPassword(newUser.password);
-        const conn = await connect();
-        await conn.query('INSERT INTO user SET ?', [newUser]);
+       const conn = await connect();
+       await conn.query('INSERT INTO user SET ?', [newUser]);
         res.json('user creado');
-        console.log('user creado');
-    }
+        }
     catch (e) {
         if (e.message.includes('email')) {
             res.json('El email ya existe');
         }
         if (e.message.includes('userName')) {
             res.json('El nombre de usuario ya existe');
+        }else {
+            console.log(e);
+            res.json(e)
         }
     }
 }
@@ -135,3 +137,4 @@ export async function signIn(req: Request, res: Response) {
 export const profile =(req: Request, res: Response) => {
     res.send({profile: 'profile'});
 }
+
