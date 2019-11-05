@@ -1,3 +1,7 @@
+# Better practices
+https://medium.com/better-practices/design-apis-like-you-design-user-experience-a7adeb2ee90f
+
+
 # Implementar JWT
 https://www.npmjs.com/package/jsonwebtoken
 https://www.oscarblancarteblog.com/2018/01/16/implementar-json-web-tokens-nodejs/

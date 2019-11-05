@@ -78,19 +78,19 @@ export async function deleteUser(req: Request, res: Response) {
         const { idUser } = req.params;
         // console.log(req.params.idUser);
         // console.log(req.params);
-        // console.log(idUser);
+        console.log(idUser);
         const conn = await connect();
         const sql = 'DELETE FROM user WHERE idUser = ' + [idUser];
         await conn.query(sql, function (err: any, result: any) {
             if (err) throw err;
-            console.log(result.affectedRows + " record(s) affected");
+            // console.log(result.affectedRows + " record(s) affected");
 
             if (result.affectedRows > 0) {
-                console.log(" record(s) deleted");
+                // console.log(" record(s) deleted");
                 // res.json es lo que mostrara como respuesta Postman o Insomnia.
                 // La respuesta se puede enviar como json.
                 // Pero solo de una forma u otra.
-                res.send('User ' + idUser + ' deleted ');
+                res.send({'message':'User ' + idUser + ' deleted '});
                 //    res.json({
                 //        message: 'User ' + idUser + ' deleted '
                 //    });
@@ -98,10 +98,12 @@ export async function deleteUser(req: Request, res: Response) {
                 //    res.json({
                 //        message: '¡No hay registro para borrar! '
                 //    });
-                res.send('¡No hay registro para borrar!');
-                console.log("No hay registro que borrar");
+                // res.send('¡No hay registro para borrar!');
+                res.status(500).json(err);
+                // console.log("No hay registro que borrar");
             }
             res.end();
+            
         });
     }
     catch (e) {
