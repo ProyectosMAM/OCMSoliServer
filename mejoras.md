@@ -1,5 +1,7 @@
 # Better practices
 https://medium.com/better-practices/design-apis-like-you-design-user-experience-a7adeb2ee90f
+https://cloud.google.com/apis/design/
+https://developers.google.com/analytics/devguides/reporting/core/v3/errors?hl=es
 
 
 # Implementar JWT

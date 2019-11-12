@@ -10,7 +10,6 @@ import { User } from '../models/user.model';
 
 // Interfaces
 
-
 export async function getUsers(req: Request, res: Response): Promise<Response | void> {
     try {
         const conn = await connect();
@@ -36,7 +35,7 @@ export async function getUser(req: Request, res: Response) {
     }
     catch (e) {
         console.log(e);
-           }
+    }
 }
 
 export async function createUser(req: Request, res: Response) {
@@ -44,17 +43,17 @@ export async function createUser(req: Request, res: Response) {
         const newUser: User = req.body;
         console.log(newUser);
         newUser.password = await helpers.encryptPassword(newUser.password);
-       const conn = await connect();
-       await conn.query('INSERT INTO user SET ?', [newUser]);
+        const conn = await connect();
+        await conn.query('INSERT INTO user SET ?', [newUser]);
         res.json('user creado');
-        }
+    }
     catch (e) {
         if (e.message.includes('email')) {
             res.json('El email ya existe');
         }
         if (e.message.includes('userName')) {
             res.json('El nombre de usuario ya existe');
-        }else {
+        } else {
             console.log(e);
             res.json(e)
         }
@@ -62,13 +61,22 @@ export async function createUser(req: Request, res: Response) {
 }
 
 export async function updateUser(req: Request, res: Response) {
-    const { idUser } = req.params;
-    const updatedUser: User = req.body;
-    const conn = await connect();
-    await conn.query('UPDATE user set ? WHERE idUser = ?', [updatedUser, idUser]);
-    res.json({
-        message: 'User ' + idUser  + ' updated'
-    });
+    try {
+        // console.log(req.params);
+        const updatedUser: User = req.body;
+        console.log(updatedUser);
+        const conn = await connect();
+        // await conn.query('UPDATE user set ? WHERE idUser = ?', [updatedUser, updatedUser.idUser]);
+        const sql = conn.format('UPDATE user set ? WHERE idUser = ?', [updatedUser, updatedUser.idUser]);
+        console.log(sql);
+        await conn.query(sql);
+        res.json({
+            message: 'User ' + updatedUser.idUser + ' updated'
+        });
+    } catch (e) {
+        console.log('error encontrado');
+        console.log(e);
+    }
 }
 
 export async function deleteUser(req: Request, res: Response) {
@@ -90,7 +98,7 @@ export async function deleteUser(req: Request, res: Response) {
                 // res.json es lo que mostrara como respuesta Postman o Insomnia.
                 // La respuesta se puede enviar como json.
                 // Pero solo de una forma u otra.
-                res.send({'message':'User ' + idUser + ' deleted '});
+                res.send({ 'message': 'User ' + idUser + ' deleted ' });
                 //    res.json({
                 //        message: 'User ' + idUser + ' deleted '
                 //    });
@@ -103,7 +111,7 @@ export async function deleteUser(req: Request, res: Response) {
                 // console.log("No hay registro que borrar");
             }
             res.end();
-            
+
         });
     }
     catch (e) {
@@ -120,14 +128,14 @@ export async function signIn(req: Request, res: Response) {
         const user: any = rows[0];
         const validatePass = await helpers.matchPassword(req.body.password, user[0].password);
         if (validatePass) {
-        var tokenData = {
-            username: req.body.userName
-                  }
-        const token: string = jwt.sign(tokenData, process.env.TOKEN_SECRET || 'siNoExisteEnv', {
-         expiresIn: 60 * 60 * 24
-        });
-        // console.log(token);
-         res.send({token})
+            var tokenData = {
+                username: req.body.userName
+            }
+            const token: string = jwt.sign(tokenData, process.env.TOKEN_SECRET || 'siNoExisteEnv', {
+                expiresIn: 60 * 60 * 24
+            });
+            // console.log(token);
+            res.send({ token })
         } else {
             return res.json('password incorrecto');
         }
@@ -136,7 +144,36 @@ export async function signIn(req: Request, res: Response) {
     }
 }
 
-export const profile =(req: Request, res: Response) => {
-    res.send({profile: 'profile'});
+export const profile = (req: Request, res: Response) => {
+    res.send({ profile: 'profile' });
 }
 
+export async function getUserEmail(req: Request, res: Response) {
+    try {
+        const email = req.params.email;
+        const idUser = req.params.idUser;
+        const conn = await connect();
+        const userSelected = await conn.query('SELECT * FROM user WHERE email = ? and idUser <> ?', [email, idUser]);
+        // console.log(userSelected[0]);
+        res.json(userSelected[0]);
+    }
+    catch (e) {
+        console.log(e);
+    }
+}
+
+    export async function getUserName(req: Request, res: Response) {
+        try {
+            console.log(req.params);
+            const userName = req.params.userName;
+            const idUser = req.params.idUser;
+            const conn = await connect();
+            console.log(`SELECT * FROM user WHERE userName = ${userName} and idUser <> ${idUser}`);
+            const userSelected = await conn.query('SELECT * FROM user WHERE userName = ? and idUser <> ?', [userName, idUser]);
+            console.log(userSelected[0]);
+            res.json(userSelected[0]);
+        }
+        catch (e) {
+            console.log(e);
+        }
+}
