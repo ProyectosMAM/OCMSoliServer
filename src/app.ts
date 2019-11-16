@@ -5,6 +5,7 @@ var cors = require("cors");
 
 // Routes
 import UserRoutes from './routes/user.routes'
+import rolRoutes from './routes/rol.routes'
 
 export class App {
     app: Application;
@@ -40,6 +41,7 @@ export class App {
 
     private routes() {
         this.app.use('/api/v1/users', UserRoutes);
+        this.app.use('/api/v1/rols', rolRoutes);
     }
 
     async listen(): Promise<void> {

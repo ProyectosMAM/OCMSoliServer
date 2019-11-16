@@ -1,9 +1,26 @@
+# rol.controler.ts
+Factura en euros
+    ¿Diferencia entre usar Promise como hacemos en getRols y sin Promise?
+    ¿Es mejor pasar una cadena SQL o hacerlo directamente en el Query? Peligro inyección de codigo.
+    ¿Diferencia entre return.res....  y res unicamente?
+    ¿Mejor estrategia para detectar errores, ejemplo de uso en deleteRol?
+    # ¿Qué errores deberia controlar en users.service.ts?
+    # Si no devuelvo nada no tengo informacion en component.ts
+       https://www.codementor.io/zellliew/handling-errors-in-express-10oun71c6l?utm_swu=7100
+    ¿Porque usar una function en la llamada a query de deleteRol?
+    En cada consulta abrimos connect, ¿Es conveniente cerrarlo?
+    const { fromRow, toRow, from = +fromRow, to = +toRow } = req.params; ¿Porque aqui los parametros son text y no number?
+
+
+
+
+
+
+
+
+
 # Implatación de JsonWebToken
 user.controller.ts Linea 50.
-
-
-
-
 
 # Usar json en Linea 37 user.controller.ts  export async function createUser(req: Request, res: Response) {....
 Pretendo pasar todas las consultas como una cadena al query.

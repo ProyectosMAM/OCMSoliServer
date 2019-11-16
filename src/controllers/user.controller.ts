@@ -2,6 +2,9 @@ import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken';
 const helpers = require('../libs/helpers');
 
+// Controlar errores.
+// https://www.codementor.io/zellliew/handling-errors-in-express-10oun71c6l?utm_swu=7100
+
 // DB
 import { connect } from '../database'
 
@@ -76,6 +79,7 @@ export async function updateUser(req: Request, res: Response) {
     } catch (e) {
         console.log('error encontrado');
         console.log(e);
+        res.json({e});
     }
 }
 
