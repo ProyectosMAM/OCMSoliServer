@@ -14,15 +14,15 @@ export class App {
         private port?: number | string
     ) {
         this.app = express();
-       this.app.use(cors());
+        this.app.use(cors());
         this.app.options('*', cors());
         //    this.app.use(function(req, res, next) {
-    //         res.header("Access-Control-Allow-Origin", "*");
-    //         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    //         // res.header("Access-Control-Allow-Credentials", new[] { "true" });
-    //         res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH,OPTIONS");
-    //         next();
-    //     });
+        //         res.header("Access-Control-Allow-Origin", "*");
+        //         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        //         // res.header("Access-Control-Allow-Credentials", new[] { "true" });
+        //         res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH,OPTIONS");
+        //         next();
+        //     });
         this.settings();
         this.middlewares();
         this.routes();
@@ -32,16 +32,27 @@ export class App {
         this.app.set('port', this.port || process.env.PORT || 4000);
     }
 
+    // https://medium.com/@agoiabeladeyemi/a-simple-explanation-of-express-middleware-c68ea839f498
+    // https://expressjs.com/es/guide/writing-middleware.html
     private middlewares() {
         this.app.use(morgan('common'));
         this.app.use(express.json());
         this.app.use(passport.initialize());
         this.app.use(passport.session());
+
+       
+      
     }
 
     private routes() {
         this.app.use('/api/v1/users', UserRoutes);
         this.app.use('/api/v1/rols', rolRoutes);
+
+        this.app.use((err, req, res, next) => {
+            console.log('Middleware error: ' + err.stack);                     
+            console.log('Middleware error: ' + res);   
+            next();      
+      });
     }
 
     async listen(): Promise<void> {

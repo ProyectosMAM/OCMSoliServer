@@ -67,17 +67,17 @@ export async function updateUser(req: Request, res: Response) {
     try {
         // console.log(req.params);
         const updatedUser: User = req.body;
-        console.log(updatedUser);
+        // console.log(updatedUser);
         const conn = await connect();
         // await conn.query('UPDATE user set ? WHERE idUser = ?', [updatedUser, updatedUser.idUser]);
         const sql = conn.format('UPDATE user set ? WHERE idUser = ?', [updatedUser, updatedUser.idUser]);
-        console.log(sql);
+        // console.log(sql);
         await conn.query(sql);
         res.json({
             message: 'User ' + updatedUser.idUser + ' updated'
         });
     } catch (e) {
-        console.log('error encontrado');
+        console.log('error encontrado');///{'message': 'error email existente}´subscribe(response => {}, error =>{ alert.warning(error.message)})
         console.log(e);
         res.json({e});
     }

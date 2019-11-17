@@ -12,13 +12,6 @@ Factura en euros
     const { fromRow, toRow, from = +fromRow, to = +toRow } = req.params; ¿Porque aqui los parametros son text y no number?
 
 
-
-
-
-
-
-
-
 # Implatación de JsonWebToken
 user.controller.ts Linea 50.
 
@@ -112,3 +105,19 @@ Respuesta: MySQL no devuelve nada cuando se hace un delete aunque no exista el r
 # server.js linea 18 =  app.use(express.static("src/controllers/public"));
 # No existe "src/controllers/public"
 Juan Manuel revisará si es necesario.
+
+# Factura en euros.
+ NO es posible, no esta permitido en Argentina.
+
+# ¿Es mejor pasar una cadena SQL o hacerlo directamente en el Query? Peligro inyección de codigo.
+Es indiferente. Para evitar inyeccion lo mejor es usar un ORM.
+https://www.npmjs.com/package/mysql2
+https://phpdelusions.net/sql_injection
+
+# En cada consulta abrimos connect, ¿Es conveniente cerrarlo?
+https://www.npmjs.com/package/mysql2
+Using connection pools
+Connection pools help reduce the time spent connecting to the MySQL server by reusing a previous connection, leaving them open instead of closing when you are done with them.
+This improves the latency of queries as you avoid all of the overhead that comes with establishing a new connection.
+  
+ # const { fromRow, toRow, from = +fromRow, to = +toRow } = req.params; ¿Porque aqui los parametros son text y no number?

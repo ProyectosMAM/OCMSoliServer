@@ -22,10 +22,12 @@ export async function getRols(req: Request, res: Response): Promise<Response | v
 }
 
 export async function getRolsFromTo(req: Request, res: Response): Promise<Response | void> {
-    const { fromRow, toRow, from = +fromRow, to = +toRow } = req.params;
+    // const { fromRow, toRow, from = +fromRow, to = +toRow } = req.params;
+    const fromRow = +req.params.fromRow;
+    const toRow = +req.params.toRow;
     try {
         const conn = await connect();
-        const rolsSelected = await conn.query('SELECT * FROM rol LIMIT ?, ?', [from, to]);
+        const rolsSelected = await conn.query('SELECT * FROM rol LIMIT ?, ?', [fromRow, toRow]);
         return res.json(rolsSelected[0]);
     }
     catch (error) {

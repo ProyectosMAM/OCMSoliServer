@@ -9,7 +9,7 @@ export interface IUser {
   avatarUrl?: string | null;
   observaciones?: string | null;
   createdAt?: Date;
-  updatedAt?: Date ;
+  updatedAt?: any ;
   idUserCreate?: number | null;
   idUserUpdate?: number | null;
 }
@@ -26,7 +26,7 @@ export class User implements IUser {
     public avatarUrl?: string | null,
     public observaciones?: string | null,
     public createdAt?: Date,
-    public updatedAt?: Date,
+    public updatedAt?: string,
     public idUserCreate?: number | null,
     public idUserUpdate?: number | null
   ) {
