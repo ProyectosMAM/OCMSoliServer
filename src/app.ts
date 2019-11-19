@@ -6,6 +6,7 @@ var cors = require("cors");
 // Routes
 import UserRoutes from './routes/user.routes'
 import rolRoutes from './routes/rol.routes'
+import userRolRoutes from './routes/UserRol.routes'
 
 export class App {
     app: Application;
@@ -47,6 +48,7 @@ export class App {
     private routes() {
         this.app.use('/api/v1/users', UserRoutes);
         this.app.use('/api/v1/rols', rolRoutes);
+        this.app.use('/api/v1/userRols', userRolRoutes);
 
         this.app.use((err, req, res, next) => {
             console.log('Middleware error: ' + err.stack);                     

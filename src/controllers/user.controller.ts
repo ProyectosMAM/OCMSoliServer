@@ -77,7 +77,7 @@ export async function updateUser(req: Request, res: Response) {
             message: 'User ' + updatedUser.idUser + ' updated'
         });
     } catch (e) {
-        console.log('error encontrado');///{'message': 'error email existente}´subscribe(response => {}, error =>{ alert.warning(error.message)})
+        console.log('error encontrado');
         console.log(e);
         res.json({e});
     }

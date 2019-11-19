@@ -16,7 +16,6 @@ router.route('/')
     .get(getRols)
     .post(createRol)
    
-
 // Las rutas que no tiene parametros :idRol deben ir antes.
 // En Insomnia =>  auth-token   el token sin comillas.
 
