@@ -5,18 +5,9 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema solicitudes
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema solicitudes
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `solicitudes` DEFAULT CHARACTER SET utf8 ;
-USE `solicitudes` ;
-
--- -----------------------------------------------------
 -- Table `solicitudes`.`Solicitudes`
 -- -----------------------------------------------------
+USE `solicitudes` ;
 DROP TABLE IF EXISTS `solicitudes`.`Solicitud` ;
 
 CREATE TABLE IF NOT EXISTS `solicitudes`.`Solicitud` (
@@ -48,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `solicitudes`.`Solicitud` (
   `GradoRespuesta` INT NULL,
   `Delegaciones_idDelegaciones` INT NOT NULL,
   `Estados_idEstados1` INT NOT NULL,
-   `createdAt` TIMESTAMP NULL,
+  `createdAt` TIMESTAMP NULL,
   `updatedAt` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `idUserCreate` INT NULL,
   `idUserUpdate` INT NULL,

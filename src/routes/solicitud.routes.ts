@@ -15,7 +15,7 @@ router.route('/')
     .get(getSolicitudes)
     .post(createSolicitud)
   
-router.route('/:idSolicitudes')
+router.route('/:id')
     .get(getSolicitud)
     .delete(deleteSolicitud)
     .put(updateSolicitud)
