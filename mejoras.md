@@ -1,3 +1,10 @@
+# Ejemplos a considerar:
+    https://github.com/BraisC/Marvel-database/blob/master/src/js/models/Comic.js
+    https://www.npmjs.com/package/axios
+    https://developer.marvel.com/documentation/apiresults
+
+
+
 # Better practices
 https://medium.com/better-practices/design-apis-like-you-design-user-experience-a7adeb2ee90f
 https://cloud.google.com/apis/design/

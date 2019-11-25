@@ -24,9 +24,9 @@ export async function getSolicitudes(req: Request, res: Response): Promise<Respo
 export async function getSolicitud(req: Request, res: Response) {
     try {
         // const idRol = req.params.idRol;
-        const { idSolicitudes } = req.params;
+        const { id } = req.params;
         const conn = await connect();
-        const userSelected = await conn.query('SELECT * FROM solicitud WHERE idSolicitudes = ?', [idSolicitudes]);
+        const userSelected = await conn.query('SELECT * FROM solicitud WHERE idSolicitudes = ?', [id]);
         // console.log(userSelected[0]);
         res.json(userSelected[0]);
     }
@@ -55,14 +55,14 @@ export async function updateSolicitud(req: Request, res: Response) {
         // console.log(req.params);
         const updatedSolicitud: Solicitud = req.body;
         // console.log(updatedRol);
-        const { idSolicitudes } = req.params;
+        const { id } = req.params;
         const conn = await connect();
         // await conn.query('UPDATE user set ? WHERE idUser = ?', [updatedUser, updatedUser.idUser]);
-        const sql = conn.format('UPDATE solicitud set ? WHERE idSolicitudes = ?', [updatedSolicitud, idSolicitudes]);
+        const sql = conn.format('UPDATE solicitud set ? WHERE idSolicitudes = ?', [updatedSolicitud, id]);
         // console.log(sql);
         await conn.query(sql);
         res.json({
-            message: 'Solicitud ' + idSolicitudes + ' updated'
+            message: 'Solicitud ' + id + ' updated'
         });
     } 
     catch (error) {
@@ -73,14 +73,16 @@ export async function updateSolicitud(req: Request, res: Response) {
 
 export async function deleteSolicitud(req: Request, res: Response) {
     try {
-        const { idSolicitudes } = req.params;
-        console.log(idSolicitudes);
+        console.log(req.params);
+        const { id } = req.params;
+        console.log(id);
         const conn = await connect();
-        const sql = 'DELETE FROM solicitud WHERE idSolicitudes = ' + [idSolicitudes];
+        const sql = 'DELETE FROM solicitud WHERE idSolicitudes = ' + [id];
+        console.log(sql);
         await conn.query(sql, function (err: any, result: any) {
             if (err) throw err;
             if (result.affectedRows > 0) {
-                res.send({ 'message': 'Solicitud ' + idSolicitudes + ' deleted ' });
+                res.send({ 'message': 'Solicitud ' + id + ' deleted ' });
             } else {
                 res.status(500).json(err);
             }

@@ -12,7 +12,7 @@ const ID = 'idDelegacion';
 export async function getDelegaciones(req: Request, res: Response): Promise<Response | void> {
     try {
         const conn = await connect();
-        const rolsSelected = await conn.query('SELECT * FROM delegacion');
+        const rolsSelected = await conn.query(`SELECT * FROM ${table}`);
         return res.json(rolsSelected[0]);
     }
     catch (error) {
@@ -25,7 +25,7 @@ export async function getDelegacion(req: Request, res: Response) {
     try {
         const { id } = req.params;
         const conn = await connect();
-        const userRolSelected = await conn.query('SELECT * FROM delegacion WHERE idDelegacion = ?', [id]);
+        const userRolSelected = await conn.query(`SELECT * FROM ${table} WHERE ${ID} = ${id}`);
         res.json(userRolSelected[0]);
     }
     catch (error) {
@@ -38,7 +38,7 @@ export async function createDelegacion(req: Request, res: Response) {
     try {
         const newDelegacion: Delegacion = req.body;
         const conn = await connect();
-        await conn.query('INSERT INTO delegacion SET ?', [newDelegacion]);
+        await conn.query(`INSERT INTO ${table} SET ?`, [newDelegacion]);
         // await conn.pool.query('INSERT INTO userRol SET ?', [newUserRol]);
         // Connection is automatically released once query resolves
         res.json('Delegacion creada');
@@ -54,7 +54,8 @@ export async function updateDelegacion(req: Request, res: Response) {
         const updatedDelegacion: Delegacion = req.body;
         const { id } = req.params;
         const conn = await connect();
-        const sql = conn.format('UPDATE delegacion set ? WHERE idDelegacion = ?', [updatedDelegacion, id]);
+        const sql = conn.format(`UPDATE ${table} set ? WHERE ${ID} = ${id}`, [updatedDelegacion]);
+        console.log(sql);
         await conn.query(sql);
         res.json({
             message: 'Delegacion ' + id + ' updated'
