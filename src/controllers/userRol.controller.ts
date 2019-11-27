@@ -31,6 +31,19 @@ export async function getUserRol(req: Request, res: Response) {
     }
 }
 
+export async function getUserRoles(req: Request, res: Response) {
+    try {
+        const { user_idUser } = req.params;
+        const conn = await connect();
+        const userRolSelected = await conn.query('SELECT r.descripcion FROM userRol ur, rol r  WHERE ur.rol_idRol = r.idRol AND ur.user_idUser = ?', [user_idUser]);
+        res.json(userRolSelected[0]);
+    }
+    catch (error) {
+        console.log(error)
+        res.json(error);
+    }
+}
+
 export async function createUserRol(req: Request, res: Response) {
     try {
         const newUserRol: UserRol = req.body;
@@ -62,6 +75,7 @@ export async function updateUserRol(req: Request, res: Response) {
         res.json(error);
     }
 }
+
 
 export async function deleteUserRol(req: Request, res: Response) {
     try {

@@ -7,6 +7,7 @@ import {
     getUserRol,
     deleteUserRol,
     updateUserRol,
+    getUserRoles
    } from '../controllers/UserRol.controller'
 
 const router = Router();
@@ -19,5 +20,7 @@ router.route('/:idUserRol')
     .get(getUserRol)
     .delete(deleteUserRol)
     .put(updateUserRol)
-  
+
+router.route('/user/:user_idUser')
+    .get(getUserRoles)
 export default router;

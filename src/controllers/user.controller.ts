@@ -138,8 +138,8 @@ export async function signIn(req: Request, res: Response) {
             const token: string = jwt.sign(tokenData, process.env.TOKEN_SECRET || 'siNoExisteEnv', {
                 expiresIn: 60 * 60 * 24
             });
-            // console.log(token);
-            res.send({ token })
+            console.log(row);
+            res.send({ 'token': token, 'idUser': row[0].idUser })
         } else {
             return res.json('password incorrecto');
         }
