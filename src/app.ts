@@ -9,6 +9,7 @@ import rolRoutes from './routes/rol.routes'
 import userRolRoutes from './routes/UserRol.routes'
 import solicitudRoutes from './routes/solicitud.routes'
 import delegacionRoutes from './routes/delegacion.routes'
+import documentoRoutes from './routes/documento.routes'
 
 export class App {
     app: Application;
@@ -50,6 +51,7 @@ export class App {
         this.app.use('/api/v1/userRols', userRolRoutes);
         this.app.use('/api/v1/solicitudes', solicitudRoutes);
         this.app.use('/api/v1/delegaciones', delegacionRoutes);
+        this.app.use('/api/v1/documentos', documentoRoutes);
 
         this.app.use((err, req, res, next) => {
             console.log('Middleware error: ' + err.stack);                     

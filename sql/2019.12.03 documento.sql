@@ -7,38 +7,28 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema solicitudes
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `solicitudes` ;
-
--- -----------------------------------------------------
--- Schema solicitudes
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `solicitudes` DEFAULT CHARACTER SET utf8 ;
 USE `solicitudes` ;
 
 -- -----------------------------------------------------
--- Table `solicitudes`.`user`
+-- Table `solicitudes`.`Documentos`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `solicitudes`.`user` ;
+DROP TABLE IF EXISTS `solicitudes`.`Documento` ;
 
-CREATE TABLE IF NOT EXISTS `solicitudes`.`user` (
-  `idUser` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NULL,
-  `apellido1` VARCHAR(45) NULL,
-  `apellido2` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `userName` VARCHAR(12) NOT NULL,
-  `password` VARCHAR(12) NOT NULL,
-  `avatarUrl` TEXT NULL,
-  `observaciones` VARCHAR(150) NULL,
+CREATE TABLE IF NOT EXISTS `solicitudes`.`Documento` (
+  `idDocumento` INT NOT NULL AUTO_INCREMENT,
+  `idSolicitudes` INT NULL,
+  `Descripcion` VARCHAR(45) NULL,
+  `Observaciones` VARCHAR(45) NULL,
+  `Fecha` DATE NULL,
+  `Ruta` TEXT NULL,
+  `Tipo` VARCHAR(45) NULL,
   `createAt` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `updateAt` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `idUserCreate` INT NULL,
   `idUserUpdate` INT NULL,
-  PRIMARY KEY (`idUser`))
+  PRIMARY KEY (`idDocumento`))
 ENGINE = InnoDB;
 
-CREATE UNIQUE INDEX `userName_UNIQUE` ON `solicitudes`.`user` (`userName` ASC) VISIBLE;
-CREATE UNIQUE INDEX `email_UNIQUE` ON `solicitudes`.`user` (`email` ASC) VISIBLE;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

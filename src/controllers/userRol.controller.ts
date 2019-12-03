@@ -37,7 +37,7 @@ export async function getUserRoles(req: Request, res: Response) {
         const conn = await connect();
         const userRolSelected = await conn.query('SELECT r.descripcion FROM userRol ur, rol r  WHERE ur.rol_idRol = r.idRol AND ur.user_idUser = ?', [user_idUser]);
         res.json(userRolSelected[0]);
-    }
+            }
     catch (error) {
         console.log(error)
         res.json(error);
