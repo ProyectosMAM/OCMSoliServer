@@ -21,6 +21,23 @@ export async function getAll(req: Request, res: Response): Promise<Response | vo
     }
 }
 
+export async function getAllFase(req: Request, res: Response): Promise<Response | void> {
+    try {
+        // console.log(req);
+        const { idSolicitud } = req.params;
+        const { fase } = req.params;
+        const conn = await connect();
+        const rolsSelected = await conn.query(`SELECT * FROM ${table} WHERE idSolicitudes = ${idSolicitud} and fase = ${fase} `);
+         console.log(conn.query);
+        return res.json(rolsSelected[0]);
+    }
+    catch (error) {
+      
+        console.log(error)
+        res.json(error);
+    }
+}
+
 export async function get(req: Request, res: Response) {
     try {
         const { id } = req.params;

@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `solicitudes`.`Solicitud` (
   `TextoCabecera` VARCHAR(45) NULL,
   `TextoSolicitud` VARCHAR(245) NULL,
   `SolicitudPrevia` TINYINT NULL,
-  `Observaciones` VARCHAR(45) NULL,
+  `Observaciones` TEXT NULL,
   `Instituciones_idInstituciones` INT NOT NULL,
   `Solicitantes_idSolicitantes` INT NOT NULL,
   `Estados_idEstados` INT NOT NULL,

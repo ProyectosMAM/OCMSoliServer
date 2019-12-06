@@ -3,6 +3,7 @@ const { TokenValidation } = require('../libs/verifyToken');
 
 import {
     getAll,
+    getAllFase,
     create,
     get,
     deleter,
@@ -19,5 +20,8 @@ router.route('/:id')
     .get(get)
     .delete(deleter)
     .put(update)
+
+    router.route('/:idSolicitud/:fase')
+    .get(getAllFase)
   
 export default router;
