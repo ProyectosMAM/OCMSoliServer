@@ -12,6 +12,12 @@ export interface ISolicitud {
     FechaAprobacionOCM?: Date;
     FechaPresentacion?: Date;
     FechaInicioExpediente?: Date;
+    fecIniAyu?: Date;
+    fecFinAyu?: Date;
+    fecIniCon?: Date;
+    fecFinCon?: Date;
+    fecIniDef?: Date;
+    fecFinDef?: Date;
     TextoCabecera?: string | null;
     TextoSolicitud?: string | null;
     SolicitudPrevia?: number | null;
@@ -48,6 +54,12 @@ export class Solicitud implements ISolicitud {
        public FechaAprobacionOCM?: Date,
        public FechaPresentacion?: Date,
        public FechaInicioExpediente?: Date,
+       public fecIniAyu?: Date,
+       public fecFinAyu?: Date,
+       public fecIniCon?: Date,
+       public fecFinCon?: Date,
+       public fecIniDef?: Date,
+       public fecFinDef?: Date,
        public TextoCabecera?: string | null,
        public TextoSolicitud?: string | null,
        public SolicitudPrevia?: number | null,

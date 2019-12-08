@@ -8,7 +8,7 @@ import {
     deleteUserRol,
     updateUserRol,
     getUserRoles
-   } from '../controllers/UserRol.controller'
+   } from '../controllers/userRol.controller'
 
 const router = Router();
 

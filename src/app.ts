@@ -6,7 +6,7 @@ var cors = require("cors");
 // Routes
 import UserRoutes from './routes/user.routes'
 import rolRoutes from './routes/rol.routes'
-import userRolRoutes from './routes/UserRol.routes'
+import userRolRoutes from './routes/userRol.routes'
 import solicitudRoutes from './routes/solicitud.routes'
 import delegacionRoutes from './routes/delegacion.routes'
 import documentoRoutes from './routes/documento.routes'

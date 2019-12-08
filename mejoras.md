@@ -1,3 +1,13 @@
+# Nodejs & DigitalOcean | Subida de Aplicacion con SSH, PM2 y nginx
+https://www.youtube.com/watch?v=gmfUNDmJDuk
+
+https://itnext.io/deploy-a-nodejs-and-expressjs-app-on-digital-ocean-with-nginx-and-free-ssl-edd88a5580fa
+
+
+
+
+
+
 # Ejemplos a considerar:
     https://github.com/BraisC/Marvel-database/blob/master/src/js/models/Comic.js
     https://www.npmjs.com/package/axios
