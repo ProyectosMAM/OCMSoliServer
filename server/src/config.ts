@@ -11,7 +11,7 @@ export class Config {
   'server.port' = '8081';
   'jhipster.clientApp.name' = 'OCMSoliServer';
   'jhipster.registry.password' = 'admin';
-  'jhipster.security.authentication.jwt.base64-secret' = '';
+  'jhipster.security.authentication.jwt.base64-secret' = 'NDhjNjk1NTM3NWRlNjc1NDMwZjllNWFiMmVlYjQ4NzViYzY4MmY5ZWY2MzZhMzNiMTYxYmNlYjJkMWYwNDk0NDBlNDYwZThjMmFmNzAyNTQyOWYxMDhkM2QxYTQ3ZDFjM2I5YWU4YWVjOGRhNDc3MWE5OTExMzUyMjI3MDlmZWM=';
   'jhipster.security.authentication.jwt.token-validity-in-seconds' = 86400;
   'jhipster.security.authentication.jwt.token-validity-in-seconds-for-remember-me' = 2592000;
   'jhipster.mail.base-url' = 'http://127.0.0.1:${server.port}';

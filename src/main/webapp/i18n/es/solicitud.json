@@ -1,0 +1,24 @@
+{
+  "ocmSoliServerApp": {
+    "solicitud": {
+      "home": {
+        "title": "Solicituds",
+        "createLabel": "Crear nuevo Solicitud",
+        "createOrEditLabel": "Crear o editar Solicitud",
+        "notFound": "Ningún Solicituds encontrado"
+      },
+      "created": "Un nuevo Solicitud ha sido creado con el identificador {{ param }}",
+      "updated": "Un Solicitud ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Solicitud ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Solicitud {{ id }}?"
+      },
+      "detail": {
+        "title": "Solicitud"
+      },
+      "descripcion": "Descripcion",
+      "fechaSolicitud": "Fecha Solicitud",
+      "fechaRespuesta": "Fecha Respuesta"
+    }
+  }
+}
