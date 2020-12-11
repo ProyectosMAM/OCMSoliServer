@@ -18,5 +18,8 @@ export default class Solicitud extends BaseEntity {
   @Column({ type: 'date', name: 'fecha_respuesta', nullable: true })
   fechaRespuesta: any;
 
+  @Column({ name: 'observacion', nullable: true })
+  observacion: string;
+
   // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 }

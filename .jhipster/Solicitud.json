@@ -20,6 +20,10 @@
         {
             "fieldName": "fechaRespuesta",
             "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "observacion",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20201211181238",

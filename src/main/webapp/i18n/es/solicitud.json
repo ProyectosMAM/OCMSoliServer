@@ -18,7 +18,8 @@
       },
       "descripcion": "Descripcion",
       "fechaSolicitud": "Fecha Solicitud",
-      "fechaRespuesta": "Fecha Respuesta"
+      "fechaRespuesta": "Fecha Respuesta",
+      "observacion": "Observacion"
     }
   }
 }

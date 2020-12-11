@@ -21,7 +21,8 @@ export class SolicitudUpdateComponent implements OnInit {
     id: [],
     descripcion: [null, [Validators.required]],
     fechaSolicitud: [null, [Validators.required]],
-    fechaRespuesta: []
+    fechaRespuesta: [],
+    observacion: []
   });
 
   constructor(protected solicitudService: SolicitudService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -37,7 +38,8 @@ export class SolicitudUpdateComponent implements OnInit {
       id: solicitud.id,
       descripcion: solicitud.descripcion,
       fechaSolicitud: solicitud.fechaSolicitud,
-      fechaRespuesta: solicitud.fechaRespuesta
+      fechaRespuesta: solicitud.fechaRespuesta,
+      observacion: solicitud.observacion
     });
   }
 
@@ -61,7 +63,8 @@ export class SolicitudUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       descripcion: this.editForm.get(['descripcion'])!.value,
       fechaSolicitud: this.editForm.get(['fechaSolicitud'])!.value,
-      fechaRespuesta: this.editForm.get(['fechaRespuesta'])!.value
+      fechaRespuesta: this.editForm.get(['fechaRespuesta'])!.value,
+      observacion: this.editForm.get(['observacion'])!.value
     };
   }
 

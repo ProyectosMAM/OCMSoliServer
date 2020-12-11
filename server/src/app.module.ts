@@ -11,6 +11,7 @@ import { SolicitudModule } from './module/solicitud.module';
   imports: [
     TypeOrmModule.forRoot(ormconfig),
     AuthModule,
+    SolicitudModule,
     SolicitudModule
     // jhipster-needle-add-entity-module-to-main - JHipster will add entity modules here, do not remove
   ],

@@ -26,6 +26,7 @@
                     <th scope="col"  jhiSortBy="descripcion"><span jhiTranslate="ocmSoliServerApp.solicitud.descripcion">Descripcion</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="fechaSolicitud"><span jhiTranslate="ocmSoliServerApp.solicitud.fechaSolicitud">Fecha Solicitud</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="fechaRespuesta"><span jhiTranslate="ocmSoliServerApp.solicitud.fechaRespuesta">Fecha Respuesta</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="observacion"><span jhiTranslate="ocmSoliServerApp.solicitud.observacion">Observacion</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -35,6 +36,7 @@
                     <td>{{ solicitud.descripcion }}</td>
                     <td>{{ solicitud.fechaSolicitud | date:'mediumDate' }}</td>
                     <td>{{ solicitud.fechaRespuesta | date:'mediumDate' }}</td>
+                    <td>{{ solicitud.observacion }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
