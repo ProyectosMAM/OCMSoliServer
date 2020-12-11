@@ -1,0 +1,8 @@
+version: '2'
+services:
+  ocmsoliserver-app:
+    build: ../../..
+    container_name: ocmsoliserver-app
+    environment:
+    ports:
+      - 8081:8081
